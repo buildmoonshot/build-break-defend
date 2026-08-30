@@ -1,0 +1,47 @@
+<svg width="680" height="370" viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>How a bigram model reads the name emma</title>
+  <desc>The name emma is wrapped in boundary dots, split into neighboring letter pairs, and counted into a table; each character's row says which characters usually come next.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="680" height="370" fill="#FFFFFF"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <g>
+      <rect x="120" y="30" width="60" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+      <rect x="196" y="30" width="60" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+      <rect x="272" y="30" width="60" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+      <rect x="348" y="30" width="60" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+      <rect x="424" y="30" width="60" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+      <rect x="500" y="30" width="60" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+      <text x="150" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">.</text>
+      <text x="226" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">e</text>
+      <text x="302" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">m</text>
+      <text x="378" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">m</text>
+      <text x="454" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">a</text>
+      <text x="530" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">.</text>
+    </g>
+    <text x="340" y="100" text-anchor="middle" font-size="12" fill="#5F5E5A">the dot means &#8220;edge of the word&#8221; &#8212; count every neighboring pair</text>
+    <line x1="340" y1="108" x2="340" y2="130" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <g>
+      <rect x="125" y="136" width="70" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+      <rect x="215" y="136" width="70" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+      <rect x="305" y="136" width="70" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+      <rect x="395" y="136" width="70" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+      <rect x="485" y="136" width="70" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+      <text x="160" y="156" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">. &#8594; e</text>
+      <text x="250" y="156" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">e &#8594; m</text>
+      <text x="340" y="156" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">m &#8594; m</text>
+      <text x="430" y="156" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">m &#8594; a</text>
+      <text x="520" y="156" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">a &#8594; .</text>
+    </g>
+    <line x1="340" y1="184" x2="340" y2="206" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="340" y="228" text-anchor="middle" font-size="12" fill="#5F5E5A">do this for hundreds of names and you get a table &#8212; here is its row for &#8220;m&#8221;:</text>
+    <text x="240" y="256" text-anchor="end" font-size="12" fill="#5F5E5A">a</text><rect x="252" y="248" width="140" height="13" rx="2" fill="#1D9E75"/><text x="400" y="256" font-size="12" fill="#5F5E5A">35%</text>
+    <text x="240" y="278" text-anchor="end" font-size="12" fill="#5F5E5A">e</text><rect x="252" y="270" width="100" height="13" rx="2" fill="#1D9E75"/><text x="360" y="278" font-size="12" fill="#5F5E5A">25%</text>
+    <text x="240" y="300" text-anchor="end" font-size="12" fill="#5F5E5A">i</text><rect x="252" y="292" width="80" height="13" rx="2" fill="#1D9E75"/><text x="340" y="300" font-size="12" fill="#5F5E5A">20%</text>
+    <text x="240" y="322" text-anchor="end" font-size="12" fill="#5F5E5A">m</text><rect x="252" y="314" width="40" height="13" rx="2" fill="#1D9E75"/><text x="300" y="322" font-size="12" fill="#5F5E5A">10%</text>
+    <text x="240" y="344" text-anchor="end" font-size="12" fill="#5F5E5A">. (end)</text><rect x="252" y="336" width="40" height="13" rx="2" fill="#1D9E75"/><text x="300" y="344" font-size="12" fill="#5F5E5A">10%</text>
+  </g>
+</svg>
