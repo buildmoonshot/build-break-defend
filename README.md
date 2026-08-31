@@ -1,6 +1,12 @@
 # build-break-defend
 
-Learning AI by building it, in public, in three phases:
+Learning AI by building it, in public, in three phases.
+
+**Phase 1 is complete** — a tiny GPT built from scratch, no ML libraries.
+The plain-English story: [What I learned building a (tiny) GPT from scratch](docs/what-i-learned-building-a-gpt.md).
+Try it: `python generate.py --temperature 0.8`
+
+The three phases:
 
 1. **Build** — a small GPT from scratch, so language models stop being magic.
 2. **Break-worthy** — a real security tool (an LLM phishing-email classifier) with an
