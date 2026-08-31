@@ -9,3 +9,4 @@ __pycache__/
 data/raw/
 .DS_Store
 Thumbs.db
+models/

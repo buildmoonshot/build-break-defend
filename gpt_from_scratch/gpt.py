@@ -98,18 +98,48 @@ class Adam:
             p.data -= self.lr * m_hat / (np.sqrt(v_hat) + 1e-8)
 
 
-def sample_word(model, encode, decode, rng, boundary=".", max_len=30):
+def temperature_probs(scores, temperature=1.0):
+    """Turn raw scores into dice, with a boldness dial (PR 5).
+
+    Dividing scores by T rescales the GAPS between them before they
+    become odds: small T stretches gaps (the favorite dominates), big T
+    shrinks them (underdogs get real chances). T=1 leaves them honest.
+    """
+    z = scores / temperature
+    p = np.exp(z - z.max())
+    return p / p.sum()
+
+
+def sample_word(model, encode, decode, rng, boundary=".", max_len=30, temperature=1.0):
     """Invent a word: same dice-rolling walk as PR 3, smarter table."""
     context = [encode[boundary]]
     out = []
     while len(out) < max_len:
         window = context[-model.block_size:]
         logits = model.forward(np.array([window]))
-        probs = np.exp(logits.data[0, -1] - logits.data[0, -1].max())
-        probs /= probs.sum()
+        probs = temperature_probs(logits.data[0, -1], temperature)
         choice = rng.choice(len(probs), p=probs)
         if choice == encode[boundary]:
             break
         out.append(decode[choice])
         context.append(choice)
     return "".join(out)
+
+
+_PARAM_NAMES = ["tok_emb", "pos_emb", "Wq", "Wk", "Wv", "Wo", "W1", "W2", "head"]
+
+
+def save_model(model, path):
+    """A trained model IS its knob values — the whole thing fits in one file."""
+    arrays = {name: getattr(model, name).data for name in _PARAM_NAMES}
+    config = np.array([model.tok_emb.data.shape[0], model.block_size, model.d])
+    np.savez(path, __config__=config, **arrays)
+
+
+def load_model(path):
+    stored = np.load(path)
+    vocab_size, block_size, d_model = (int(v) for v in stored["__config__"])
+    model = TinyGPT(vocab_size, block_size, d_model=d_model)
+    for name in _PARAM_NAMES:
+        getattr(model, name).data[:] = stored[name]
+    return model
